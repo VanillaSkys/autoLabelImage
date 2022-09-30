@@ -29,7 +29,7 @@ class ObjectDetection:
         return labels, cord
 
     def class_to_label(self, x):
-        return self.classes[int(x)]
+        return int(x)
 
     def convert(self, size, box):
         dw = 1./size[0]
@@ -51,17 +51,14 @@ class ObjectDetection:
         labels, cord = results
         n = len(labels)
         x_shape, y_shape = frame.shape[1], frame.shape[0]
-
         for i in range(n):
             row = cord[i]
             if row[4] >= 0.8:
-
                 x1, y1, x2, y2 = int(
                     row[0]*x_shape), int(row[1]*y_shape), int(row[2]*x_shape), int(row[3]*y_shape)
                 bgr = (0, 255, 0)
                 cv2.rectangle(frame, (x1, y1), (x2, y2), bgr, 2)
-                cv2.putText(frame, self.class_to_label(
-                    labels[i]), (x1, y1), cv2.FONT_HERSHEY_SIMPLEX, 0.9, bgr, 2)
+                classType = self.class_to_label(labels[i])
                 license_img = original_img[y1:y2, x1:x2]
                 xmin = min(x1, x2)
                 xmax = max(x1, x2)
@@ -69,13 +66,13 @@ class ObjectDetection:
                 ymax = max(y1, y2)
                 box = (xmin, xmax, ymin, ymax)
                 yoloX, yoloY, yoloW, yoloH = self.convert((w, h), box)
-
-                text = ['0', str(yoloX), str(yoloY), str(yoloW), str(yoloH)]
+                text = [str(classType), str(yoloX), str(
+                    yoloY), str(yoloW), str(yoloH)]
                 cutFile = file[:-4]
                 with open(f'./labels/{cutFile}.txt', 'w') as f:
                     f.write('\t'.join(text))
-                cv2.imwrite(f'./images/{cutFile}.jpg', original_img)
-                cv2.imwrite(f'./crops/{cutFile}.jpg', license_img)
+                cv2.imwrite(f'./images/{file}', original_img)
+                cv2.imwrite(f'./crops/{file}', license_img)
         return frame
 
     def __call__(self):
