@@ -17,7 +17,7 @@ class ObjectDetection:
 
     def load_model(self):
         model = torch.hub.load(
-            './yolov5', 'custom', source='local', path='best.pt', force_reload=True)
+            './yolov5', 'custom', source='local', path='best.pt', force_reload=True)  # change path according to file
         return model
 
     def score_frame(self, frame):
