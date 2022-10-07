@@ -7,3 +7,8 @@
 ## Custom Dataset
 
 หารูปภาพจากนั้นนำมาLabel โดยใช้ [roboflow](https://roboflow.com/)
+
+![Label](https://blog.roboflow.com/content/images/size/w2000/2021/06/label-classification.jpg)
+
+
+
