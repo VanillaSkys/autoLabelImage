@@ -19,7 +19,7 @@ Change file best.pt to your file
 
 ## Folder
 
-*input input images
-*images Save the images
-*labels Save the labels image
-*crops Save the cropped image
+* input input images
+* images Save the images
+* labels Save the labels image
+* crops Save the cropped image
