@@ -12,11 +12,11 @@
 
 ## Train Model
 
-หลังจาก Export ไฟล์ที่ Label เป็นไฟล์ Yolov5 จะได้ Folder 
+หลังจาก Export File ที่ Label เป็น File Yolov5 จะได้ Folder และ File
 
 * Images
 * Labels
-data.yaml
+* data.yaml
 
 
 
