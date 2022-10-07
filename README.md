@@ -10,5 +10,14 @@
 
 ![Label](https://blog.roboflow.com/content/images/size/w2000/2021/06/label-classification.jpg)
 
+## Train Model
+
+หลังจาก Export ไฟล์ที่ Label เป็นไฟล์ Yolov5 จะได้ Folder 
+
+* Images
+* Labels
+data.yaml
+
+
 
 
