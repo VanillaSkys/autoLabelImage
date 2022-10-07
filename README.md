@@ -83,3 +83,24 @@ python train.py --data license.yaml --weights yolov5s.pt --img 640 --batch 16 --
 > หากมี GPU หลายตัว python train.py --data [File name จากFolder Data] --weights [ขนาดที่ต้องการ] --img 640 --batch [กำหนดbatch ปกติ 16] --epochs [กำหนดจำนวนรอบ] --device [เลขGPU]
 
 > python train.py --data license.yaml --weights yolov5s.pt --img 640 --batch 16 --epochs 100 --device 0,1
+
+## Detect
+
+สร้างFolder test
+
+พิมพ์ command
+
+`python detect.py --weights [path best.pt] --img 640 --conf 0.25 --source test/`
+
+`python detect.py --weights runs/train/exp/weights/best.pt --img 640 --conf 0.25 --source test/`
+
+หลังจากลองDetectเสร็จจะเก็บไว้ใน Folder test
+
+หากต้องการเปิดกล้องให้ใช้ `--source 0`
+
+## นำโค้ดมาใช้
+
+โดยให้ Copy code จาก [https://github.com/niconielsen32/yolov5live](https://github.com/niconielsen32/yolov5live)
+
+เปลี่ยน `model = torch.hub.load('ultralytics/yolov5', 'yolov5s', pretrained=True)`เป็น
+`model = torch.hub.load('./yolov5', 'custom', source='local', path='best.pt', force_reload=True)`
