@@ -25,6 +25,9 @@ class ObjectDetection:
         labels, cord = results.xyxyn[0][:, -1], results.xyxyn[0][:, :-1]
         return labels, cord
 
+    def class_to_label_text(self, x):
+        return self.classes[int(x)]
+
     def class_to_label(self, x):
         return int(x)
 
@@ -54,7 +57,9 @@ class ObjectDetection:
                 x1, y1, x2, y2 = int(
                     row[0]*x_shape), int(row[1]*y_shape), int(row[2]*x_shape), int(row[3]*y_shape)
                 bgr = (0, 255, 0)
-                cv2.rectangle(frame, (x1, y1), (x2, y2), bgr, 2)
+                cv2.rectangle(frame, (x1, y1), (x2, y2), bgr, 1)
+                cv2.putText(frame, self.class_to_label_text(labels[i]), (x1, y1),
+                            cv2.FONT_HERSHEY_DUPLEX, 0.9, bgr, 1)
                 classType = self.class_to_label(labels[i])
                 license_img = original_img[y1:y2, x1:x2]
                 xmin = min(x1, x2)
@@ -68,8 +73,8 @@ class ObjectDetection:
                 cutFile = file[:-4]
                 with open(f'./labels/{cutFile}.txt', 'w') as f:
                     f.write('\t'.join(text))
-                cv2.imwrite(f'./images/{file}', original_img)
-                cv2.imwrite(f'./crops/{file}', license_img)
+                cv2.imwrite(f'./images/{file}', frame)
+                cv2.imwrite(f'./crops/{str(i)+"-"+file}', license_img)
         return frame
 
     def __call__(self):
