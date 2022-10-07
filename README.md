@@ -81,4 +81,5 @@ python train.py --data [File name จากFolder Data] --weights [ขนาด�
 python train.py --data license.yaml --weights yolov5s.pt --img 640 --batch 16 --epochs 100
 
 > หากมี GPU หลายตัว python train.py --data [File name จากFolder Data] --weights [ขนาดที่ต้องการ] --img 640 --batch [กำหนดbatch ปกติ 16] --epochs [กำหนดจำนวนรอบ] --device [เลขGPU]
+
 > python train.py --data license.yaml --weights yolov5s.pt --img 640 --batch 16 --epochs 100 --device 0,1
