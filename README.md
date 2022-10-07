@@ -3,6 +3,7 @@
 ## Setup
 
 Create folder 
+
 * input
 * images
 * labels
